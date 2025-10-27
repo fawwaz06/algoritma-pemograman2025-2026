@@ -3,41 +3,57 @@
 #include <cmath>
 using namespace std;
 
-double hitungNilaiAkhir(int h, int f, int i, int k, int uts, int uas, int p) {
-    return h*0.05 + f*0.05 + i*0.10 + k*0.10 + uts*0.25 + uas*0.30 + p*0.15;
+// Fungsi untuk menghitung nilai akhir
+double hitungNilaiAkhir(int hadir, int forum, int individu, int kelompok, int uts, int uas, int project) {
+    return (hadir * 0.05) + (forum * 0.05) + (individu * 0.10) +
+           (kelompok * 0.10) + (uts * 0.25) + (uas * 0.30) + (project * 0.15);
 }
 
-char hurufMutu(double n) {
-    if (n >= 85) return 'A';
-    else if (n >= 70) return 'B';
-    else if (n >= 56) return 'C';
-    else if (n >= 36) return 'D';
-    return 'E';
+// Fungsi untuk menentukan huruf mutu
+char hurufMutu(double nilai) {
+    if (nilai >= 85) return 'A';
+    else if (nilai >= 70) return 'B';
+    else if (nilai >= 56) return 'C';
+    else if (nilai >= 36) return 'D';
+    else return 'E';
 }
 
 int main() {
     string nim, nama;
-    int h, f, i, k, uts, uas, p;
+    int hadir, forum, individu, kelompok, uts, uas, project;
 
-    cout << "NIM: "; getline(cin, nim);
-    cout << "NAMA: "; getline(cin, nama);
-    cout << "KEHADIRAN: "; cin >> h;
-    cout << "FORUM: "; cin >> f;
-    cout << "INDIVIDU: "; cin >> i;
-    cout << "KELOMPOK: "; cin >> k;
-    cout << "UTS: "; cin >> uts;
-    cout << "UAS: "; cin >> uas;
-    cout << "PROJECT: "; cin >> p;
+    // Input data mahasiswa
+    cout << "=== INPUT DATA MAHASISWA ===" << endl;
+    cout << "NIM               : ";
+    getline(cin, nim);
+    cout << "NAMA              : ";
+    getline(cin, nama);
+    cout << "NILAI KEHADIRAN   : ";
+    cin >> hadir;
+    cout << "NILAI FORUM       : ";
+    cin >> forum;
+    cout << "NILAI INDIVIDU    : ";
+    cin >> individu;
+    cout << "NILAI KELOMPOK    : ";
+    cin >> kelompok;
+    cout << "NILAI UTS         : ";
+    cin >> uts;
+    cout << "NILAI UAS         : ";
+    cin >> uas;
+    cout << "NILAI PROJECT     : ";
+    cin >> project;
 
-    double akhir = hitungNilaiAkhir(h, f, i, k, uts, uas, p);
-    cout << "\n" << nim << " - " << nama << endl;
-    cout << "Nilai Akhir : " << round(akhir) << endl;
-    cout << "Huruf Mutu  : " << hurufMutu(round(akhir)) << endl;
+    // Hitung nilai akhir dan huruf mutu
+    double akhir = hitungNilaiAkhir(hadir, forum, individu, kelompok, uts, uas, project);
+    int akhirBulat = round(akhir);
+    char mutu = hurufMutu(akhirBulat);
+
+    // Output hasil
+    cout << "\n=== HASIL NILAI MAHASISWA ===" << endl;
+    cout << "NIM          : " << nim << endl;
+    cout << "NAMA         : " << nama << endl;
+    cout << "NILAI AKHIR  : " << akhirBulat << endl;
+    cout << "HURUF MUTU   : " << mutu << endl;
+
+    return 0;
 }
-
-
-
-
-
-
-
